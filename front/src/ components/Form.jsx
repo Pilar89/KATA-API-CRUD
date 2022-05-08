@@ -14,44 +14,51 @@ const Form = () => {
 
   return (
     <>
-      <form ref={formRef}>
-        <input
-          type="text"
-          name="name"
-          placeholder="¿Qué piensas hacer hoy?"
-          defaultValue={item.name}
-          onChange={(event) => {
-            setState({ ...state, name: event.target.value });
-          }}
-        ></input>
-        {item.id && (
-          <button
-            onClick={async (event) => {
-              event.preventDefault();
-
-              await onEdit(state, dispatch, item);
-
-              setState({ name: "" });
-              formRef.current.reset();
+      <form className="form-group " ref={formRef}>
+        <div>
+          <input
+            className="col-md-4"
+            type="text"
+            name="name"
+            placeholder="Agrega una actividad"
+            defaultValue={item.name}
+            onChange={(event) => {
+              setState({ ...state, name: event.target.value });
             }}
-          >
-            Actualizar
-          </button>
-        )}
-        {!item.id && (
-          <button
-            onClick={async (event) => {
-              event.preventDefault();
+          ></input>
+        </div>
+        <div className="mt-2">
+          {item.id && (
+            <button
+              className="btn btn-primary"
+              onClick={async (event) => {
+                event.preventDefault();
 
-              await onAdd(state, dispatch, item);
+                await onEdit(state, dispatch, item);
 
-              setState({ name: "" });
-              formRef.current.reset();
-            }}
-          >
-            Crear
-          </button>
-        )}
+                setState({ name: "" });
+                formRef.current.reset();
+              }}
+            >
+              Actualizar tarea
+            </button>
+          )}
+          {!item.id && (
+            <button
+              className="btn btn-secondary"
+              onClick={async (event) => {
+                event.preventDefault();
+
+                await onAdd(state, dispatch, item);
+
+                setState({ name: "" });
+                formRef.current.reset();
+              }}
+            >
+              Crear tarea
+            </button>
+          )}
+        </div>
       </form>
     </>
   );

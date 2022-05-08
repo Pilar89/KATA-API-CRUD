@@ -25,7 +25,7 @@ const List = () => {
 
   return (
     <div>
-      <table>
+      <table className="table table-striped mt-5 text-center">
         <thead>
           <tr>
             <td>ID</td>
@@ -47,12 +47,20 @@ const List = () => {
                   ></input>
                 </td>
                 <td>
-                  <button onClick={() => onDelete(todo.id, dispatch)}>
+                  <button
+                    className="btn btn-danger"
+                    onClick={() => onDelete(todo.id, dispatch)}
+                  >
                     Eliminar
                   </button>
                 </td>
                 <td>
-                  <button onClick={() => onEdit(todo, dispatch)}>Editar</button>
+                  <button
+                    className="btn btn-primary"
+                    onClick={() => onEdit(todo, dispatch)}
+                  >
+                    Editar
+                  </button>
                 </td>
               </tr>
             );
